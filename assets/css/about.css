@@ -4,6 +4,19 @@
 img {
   margin: 0em 1em 0.5em 0em;
 }
+input {
+  border: none;
+  font-size: 2rem;
+  font-weight: bolder;
+  background: none;
+  overflow: visible;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  box-sizing: border-box;
+  color: red;
+}
 @media (max-width: 575.98px) {
   .navbar-brand {
     width: 100%;

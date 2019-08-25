@@ -1,11 +1,7 @@
-const guessLetter = {
-  display: "-",
-  guessed: false
-};
 var progress = [];
 var guessWord = [];
-var answer = "";
-var attempts = 16;
+var isWon = false;
+var remainingAttempts = 13;
 
 var hundredWords = [
   "climate",
@@ -33,84 +29,94 @@ var hundredWords = [
   "excavate"
 ];
 
-// const startGame = documant.querySelector(".start-button");
-function resetGame() {
-  guessWord = [];
+var userIneract = [
+  "Nice work!",
+  "Ops Wrong!",
+  "Congratulations, You WON!!!",
+  "Sorry you lost :(!!"
+];
+function updateDisplay(classID = String) {
+  const guessScreen = document.querySelector(".guess-screen");
+  const attemptsScreen = document.querySelector(".attempts");
+  const progressScreen = document.querySelector(".progress");
+
+  if (classID === ".guess-screen") {
+    var wordProgress = progress.join(" ");
+    guessScreen.value = wordProgress;
+  } else if (classID === ".attempts") {
+    attemptsScreen.value = remainingAttempts;
+  } else if (classID === ".progress") {
+    progressScreen.value = userIneract[0];
+  } else if (classID === ".no-progress") {
+    progressScreen.value = userIneract[1];
+  } else if (classID === ".won") {
+    progressScreen.value = userIneract[2];
+  } else if (classID === ".lost") {
+    progressScreen.value = userIneract[3];
+  }
 }
 
+function resetGame() {
+  guessWord = [];
+  progress = [];
+  isWon = false;
+  remainingAttempts = 13;
+  document.addEventListener("keydown", startGame);
+}
+function winCheck() {
+  var count = progress.length;
+  for (var i = 0; i < progress.length; i++) {
+    if (progress[i] === "-" && remainingAttempts === 0) {
+      updateDisplay(".lost");
+      document.removeEventListener("keydown", keyPress);
+      resetGame();
+    } else if (progress[i] !== "-" && remainingAttempts > 0) {
+      count = count - 1;
+    }
+  }
+  if (count === 0) {
+    updateDisplay(".won");
+    document.removeEventListener("keydown", keyPress);
+    resetGame();
+  }
+}
 function randomPick() {
   var rand = Math.floor(Math.random() * hundredWords.length);
   var pickedWord = hundredWords[rand];
   guessWord = Object.values(pickedWord);
   console.log(pickedWord);
-  console.log(guessWord);
 }
 function startGame() {
+  document.removeEventListener("keydown", startGame);
+  randomPick();
   for (var i = 0; i < guessWord.length; i++) {
     progress.push("-");
-    updateDisplay();
   }
+  updateDisplay(".guess-screen");
+
   document.addEventListener("keydown", keyPress);
 }
-/*********************************************************** DELETED CODE BOX *******************************************************
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- ***********************************************************************************************************************************/
 function keyPress(event) {
   var x = event.keyCode;
   var y = String.fromCharCode(x);
   var isMatch = false;
-
-  console.log(x);
-  console.log(y);
   for (var i = 0; i < guessWord.length; i++) {
     if (y.toLowerCase() === guessWord[i]) {
       progress[i] = guessWord[i];
-      updateDisplay();
       isMatch = true;
+      updateDisplay(".guess-screen");
+      updateDisplay(".attempts");
+      updateDisplay(".progress");
     }
   }
-  if (isMatch) {
-    console.log("Letters Matched");
-  } else {
-    console.log("No Match");
-    attempts = attempts - 1;
-    console.log(attempts);
+  if (!isMatch) {
+    remainingAttempts = remainingAttempts - 1;
+    updateDisplay(".attempts");
+    updateDisplay(".no-progress");
   }
+  winCheck();
 }
-
-function updateDisplay() {
-  const display = document.querySelector(".guess-screen");
-  var wordProgress = progress.join(" ");
-
-  display.value = wordProgress;
-}
-
-console.log(answer);
-console.log(guessWord);
-console.log(Object.values(guessWord));
-randomPick();
-startGame();
-// resetGame();
-// console.log(answer);
-// console.log(guessWord);
-// randomPick();
-// resetGame();
-// console.log(answer);
-// console.log(guessWord);
+document.addEventListener("keydown", startGame);
 
 // printer
 // epicalyx
