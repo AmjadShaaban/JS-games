@@ -32,13 +32,13 @@ var hundredWords = [
 var userIneract = [
   "Nice work!",
   "Ops Wrong!",
-  "Congratulations, You WON!!!",
+  "Congratulations, WIN!!!",
   "Sorry you lost :(!!"
 ];
 function updateDisplay(classID = String) {
   const guessScreen = document.querySelector(".guess-screen");
   const attemptsScreen = document.querySelector(".attempts");
-  const progressScreen = document.querySelector(".progress");
+  const progressScreen = document.querySelector(".guess-progress");
 
   if (classID === ".guess-screen") {
     var wordProgress = progress.join(" ");
@@ -93,6 +93,7 @@ function startGame() {
     progress.push("-");
   }
   updateDisplay(".guess-screen");
+  updateDisplay(".attempts");
 
   document.addEventListener("keydown", keyPress);
 }
