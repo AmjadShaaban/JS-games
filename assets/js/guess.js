@@ -53,6 +53,8 @@ function updateDisplay(classID = String) {
     progressScreen.value = userIneract[2];
   } else if (classID === ".lost") {
     progressScreen.value = userIneract[3];
+  } else if (classID === ".clear") {
+    progressScreen.value = "";
   }
 }
 
@@ -84,7 +86,6 @@ function randomPick() {
   var rand = Math.floor(Math.random() * hundredWords.length);
   var pickedWord = hundredWords[rand];
   guessWord = Object.values(pickedWord);
-  console.log(pickedWord);
 }
 function startGame() {
   document.removeEventListener("keydown", startGame);
@@ -94,6 +95,7 @@ function startGame() {
   }
   updateDisplay(".guess-screen");
   updateDisplay(".attempts");
+  updateDisplay(".clear");
 
   document.addEventListener("keydown", keyPress);
 }
