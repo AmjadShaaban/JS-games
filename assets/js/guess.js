@@ -42,6 +42,17 @@ var hundredWords = [
   "contrary",
   "appreciate",
   "manufacturer",
+  "combination",
+  "cutting",
+  "plagiarize",
+  "representative",
+  "circumstance",
+  "concentration",
+  "consideration",
+  "chauvinist",
+  "responsibility",
+  "pavement",
+  "dentist",
   "achievement",
   "favourite",
   "decoration",
@@ -604,7 +615,6 @@ document.addEventListener("keydown", startGame);
 // "liberty
 // "glacier
 // "destruction
-// "circumstance
 // "candidate
 // "royalty
 // "faithful
@@ -820,8 +830,6 @@ document.addEventListener("keydown", startGame);
 // "edition
 // "looting
 // "deposit
-// "concentration
-// "consideration
 // "practice
 // "leadership
 // "argument
@@ -846,16 +854,9 @@ document.addEventListener("keydown", startGame);
 // "offense
 // "harvest
 // "disappear
-// "combination
-// "cutting
-// "plagiarize
-// "responsibility
-// "pavement
-// "dentist
 // "restrain
 // "information
 // "battery
-// "chauvinist
 // "ideology
 // "resignation
 // "confusion
