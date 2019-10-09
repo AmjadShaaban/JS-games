@@ -136,7 +136,43 @@ function updateDisplay(classID = String) {
     progressScreen.value = "";
   }
 }
-
+// THIS SWITCH CASE IS BETTER!
+// switch (classID) {
+//   case ".guess-screen":
+//     {
+//       var wordProgress = progress.join(" ");
+//       guessScreen.value = wordProgress;
+//     }
+//     break;
+//   case ".attempts":
+//     {
+//       attemptsScreen.value = remainingAttempts;
+//     }
+//     break;
+//   case ".progress":
+//     {
+//       progressScreen.value = userIneract[0];
+//     }
+//     break;
+//   case ".no-progress":
+//     {
+//       progressScreen.value = userIneract[1];
+//     }
+//     break;
+//   case ".won":
+//     {
+//       progressScreen.value = userIneract[2];
+//     }
+//     break;
+//   case ".lost":
+//     {
+//       progressScreen.value = userIneract[3];
+//     }
+//     break;
+//   case ".clear": {
+//     progressScreen.value = "";
+//   }
+// }
 function resetGame() {
   guessWord = [];
   progress = [];
